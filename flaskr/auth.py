@@ -49,10 +49,12 @@ def login():
         error = None
 
         user = db.execute(
-                'SELECT id FROM user WHERE username = ?', (username,)
+                'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
 
-        if not user or not check_password_hash(user['password'], password):
+        if not user:
+            error = 'Invalid login.html credentials'
+        elif not check_password_hash(user['password'], password):
             error = 'Invalid login.html credentials'
 
         if not error:
