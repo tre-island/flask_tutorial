@@ -40,7 +40,7 @@ def register():
 
     return render_template('auth/register.html')
 
-@bp.route('/login', methods=('GET', 'POST'))
+@bp.route('/login.html', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -53,7 +53,7 @@ def login():
         ).fetchone()
 
         if not user or not check_password_hash(user['password'], password):
-            error = 'Invalid login credentials'
+            error = 'Invalid login.html credentials'
 
         if not error:
             session.clear()
